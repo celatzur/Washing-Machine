@@ -1,25 +1,25 @@
 // ************************************************************************************************************************
 // *** Washing machine sketch
 // ***
-// *** Detect the end of my old washing machine cycle, and then sends an email and beeps
+// *** To detect the end of my old washing machine cycle, and then send an email and beeps. On the future may activate
+// *** the washng machine with a servomotor through internet
 // ***  
 // *** In-Pin A0 (A0)       - Uses an LDR to check the blinking light of end of cicle
 // *** In-Pin GPIO000 (D3)  - Uses a mercury vibration switch to check the end of centrifugation
 // *** Out-Pin GPIO016 (D0) - LED to indicate change of state
-// *** Out-Pin Beeper???
-// *** 
+// *** Out-Pin Beeper?
+// *** Servomotor? 
+// ***
 // *** Created at 07 of June 2018
 // *** By Celatzur
-// *** Modified at 16 of June 2018
+// *** Modified at 23 of September 2018
 // *** By Celatzur
 // *** 
 // *** https://github.com/celatzur/Washing-Machine
 // *** 
 // ************************************************************************************************************************
 
-
-// *** NodeMCU to Arduino GPIO mapping from pins_arduino.h
-
+// *** NodeMCU to Arduino GPIO pin correspondance mapping from pins_arduino.h
 static const uint8_t D0   = 16;
 static const uint8_t D1   = 5;  // I2C Bus SCL (clock)
 static const uint8_t D2   = 4;  // I2C Bus SDA (data)
@@ -58,8 +58,8 @@ int LDR_val = 0;              // Varible to store LDR values
 int LDR_threshold_val = 500;  // Threshold for the LDR, 700 for light, 300 for darkness
 
 //My Washing Machine blinks at 0.52 blinks/second. (520ms)
-int sample_freq_ms = 150; //By Nyquist Teorem we should sample at least at double the frequency, in our case four times the frequency is enough
-
+int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at double the frequency, in our case four times 
+                              //the frequency is enough
 ////WiFiServer server(80);
 WiFiServer server(301);
  
@@ -67,7 +67,7 @@ void setup() {
   Serial.begin(115200);
   delay(10);
 
-  //LED
+  //Output LED
   pinMode(LED_pin, OUTPUT);
   digitalWrite(LED_pin, LOW);
 
@@ -98,9 +98,7 @@ void setup() {
   Serial.print("http://");
   Serial.print(WiFi.localIP());
   Serial.println("/");
- 
 }
-
 
 // ************************************************************************************************************************
 // *** Main loop: waits to the LED to be blinkning, checks the vibration and send a beep and a mail
@@ -108,11 +106,8 @@ void setup() {
 void loop() {
 
   //httpServer(); //Creates and uses an http server to change the state of the led over a web page
-
   LDRSensor(); //Read the values of the LDR and sends them over serial port
-  
   vibrationSwitch(); // Reads the value of the mercury switch and lights the led
- 
 }
 
 // ************************************************************************************************************************
@@ -149,7 +144,6 @@ int LDRSensor(){
 // Method 1: If we know the original frequency, apply Nyquist sampling theorem
 //The Washing Machine blinks at 0.52 blinks/second. (520ms)
 int sample_freq_ms = 150; //By Nyquist Teorem we should sample at double frequency, in our case four times thre frequency is enough
-
 
 // Method 2: Sample at random intervals, hoping to catch different levels
   //Now the Light is ON, check if the light is OFF five times in case we check when it's blinking
@@ -228,5 +222,4 @@ void httpServer(){
   delay(1);
   Serial.println("Client disonnected");
   Serial.println("");
-  
 }
