@@ -2,7 +2,9 @@
 // *** Washing machine sketch
 // ***
 // *** To detect the end of my old washing machine cycle, and then send an email and beeps. On the future may activate
-// *** the washng machine with a servomotor through internet
+// *** the washing machine with a servomotor through internet.
+// ***
+// *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
 // *** In-Pin A0 (A0)       - Uses an LDR to check the blinking light of end of cicle
 // *** In-Pin GPIO000 (D3)  - Uses a mercury vibration switch to check the end of centrifugation
@@ -40,15 +42,14 @@ static const uint8_t SD3 = 10;
 
 #include <ESP8266WiFi.h>
 
-// Erase my pwd ans SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Erase my pwd and SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  
 const char* ssid = "****";
 const char* password = "****";
 const char* host = "192.168.*.***"; //The serial port will tell you the IP once it starts up
                                     //just write it here afterwards and upload
  
-//Pin 13 Arduino correspon a Pin D0 Lolin
-int LED_pin = 16;             // GPIO16 = D0
+int LED_pin = 16;             // GPIO16 = D0 Correspondance between arduino and LoLin pins
 
 int switch_pin = 0;           // GPIO00 = D3 Definition of mercury tilt switch sensor interface
 int switch_val;               // Defines a numeric variable for the switch
@@ -64,16 +65,35 @@ int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at d
 WiFiServer server(301);
  
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(115200);       //Baud ratefo0r serial port communication
   delay(10);
 
   //Output LED
   pinMode(LED_pin, OUTPUT);
   digitalWrite(LED_pin, LOW);
 
-  //Mercury switch
+  //Mercury switch as input
   pinMode(switch_pin, INPUT);
  
+  //Connect to Wifi network, starts the server and prints the IP address
+  setupWifi();
+}
+
+// ************************************************************************************************************************
+// *** Main loop: waits to the LED to be blinkning, checks the vibration and send a beep and a mail
+// ************************************************************************************************************************
+void loop() {
+
+  //httpServer(); //Creates and uses an http server to change the state of the led over a web page
+  LDRSensor(); //Read the values of the LDR and sends them over serial port
+  vibrationSwitch(); // Reads the value of the mercury switch and lights the led
+}
+
+// ************************************************************************************************************************
+// *** Connect to Wifi network, starts the server and prints the IP address on the serial port
+// ************************************************************************************************************************
+void setupWifi() {
+    
   // Connect to WiFi network
   Serial.println();
   Serial.println();
@@ -93,22 +113,12 @@ void setup() {
   server.begin();
   Serial.println("Server started");
  
-  // Print the IP address
+  // Print the IP address on the serial port
   Serial.print("Use this URL to connect: ");
   Serial.print("http://");
   Serial.print(WiFi.localIP());
   Serial.println("/");
-}
-
-// ************************************************************************************************************************
-// *** Main loop: waits to the LED to be blinkning, checks the vibration and send a beep and a mail
-// ************************************************************************************************************************
-void loop() {
-
-  //httpServer(); //Creates and uses an http server to change the state of the led over a web page
-  LDRSensor(); //Read the values of the LDR and sends them over serial port
-  vibrationSwitch(); // Reads the value of the mercury switch and lights the led
-}
+  }
 
 // ************************************************************************************************************************
 // *** Reads the value of the mercury switch and lights the led
