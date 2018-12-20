@@ -152,7 +152,7 @@ int LDRSensor(){
     }
 
 // Method 1: If we know the original frequency, apply Nyquist sampling theorem
-//The Washing Machine blinks at 0.52 blinks/second. (520ms)
+// The Washing Machine blinks at 0.52 blinks/second. (520ms)
 int sample_freq_ms = 150; //By Nyquist Teorem we should sample at double frequency, in our case four times thre frequency is enough
 
 // Method 2: Sample at random intervals, hoping to catch different levels
