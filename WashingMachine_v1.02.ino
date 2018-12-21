@@ -14,7 +14,7 @@
 // ***
 // *** Created at 07 of June 2018
 // *** By Celatzur
-// *** Modified at 23 of September 2018
+// *** Modified at 21 of December 2018
 // *** By Celatzur
 // *** 
 // *** https://github.com/celatzur/Washing-Machine
@@ -41,6 +41,7 @@ static const uint8_t D12 = 10;
 static const uint8_t SD3 = 10;
 
 #include <ESP8266WiFi.h>
+#include <Servo.h>
 
 // Erase my pwd and SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  
@@ -57,6 +58,11 @@ int switch_val;               // Defines a numeric variable for the switch
 const int LDR = A0;           // Defining LDR PIN 
 int LDR_val = 0;              // Varible to store LDR values
 int LDR_threshold_val = 500;  // Threshold for the LDR, 700 for light, 300 for darkness
+
+int servoStart_pin = 1;        // Servomotor to start the washing-machine
+Servo servoStart;
+int ServoOffPosition = 90;
+int ServoOnPosition = 180;
 
 //My Washing Machine blinks at 0.52 blinks/second. (520ms)
 int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at double the frequency, in our case four times 
@@ -75,6 +81,10 @@ void setup() {
   //Mercury switch as input
   pinMode(switch_pin, INPUT);
  
+  // Servomotor to start the washing-machine
+  servoStart.attach(servoStart_pin);
+  servoStart.write(ServoOffPosition);
+  
   //Connect to Wifi network, starts the server and prints the IP address
   setupWifi();
 }
