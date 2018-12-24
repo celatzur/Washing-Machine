@@ -40,7 +40,7 @@ static const uint8_t SD2 = 9;
 static const uint8_t D12 = 10;
 static const uint8_t SD3 = 10;
 
-#include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h> //Dowwnlaodable from:
 #include <Servo.h>
 
 // Erase my pwd and SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
