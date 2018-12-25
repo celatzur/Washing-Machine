@@ -20,7 +20,7 @@
 // *** https://github.com/celatzur/Washing-Machine
 // *** 
 // ************************************************************************************************************************
-
+/*
 // *** NodeMCU to Arduino GPIO pin correspondance mapping from pins_arduino.h
 static const uint8_t D0   = 16;
 static const uint8_t D1   = 5;  // I2C Bus SCL (clock)
@@ -39,7 +39,7 @@ static const uint8_t SD2 = 9;
   
 static const uint8_t D12 = 10;
 static const uint8_t SD3 = 10;
-
+*/
 #include <ESP8266WiFi.h> //Dowwnlaodable from:
 #include <Servo.h>
 
