@@ -71,7 +71,7 @@ int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at d
 WiFiServer server(301);
  
 void setup() {
-  Serial.begin(115200);       //Baud ratefo0r serial port communication
+  Serial.begin(115200);       //Baud rate for serial port communication
   delay(10);
 
   //Output LED
