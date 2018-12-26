@@ -67,8 +67,8 @@ int ServoOnPosition = 180;
 //My Washing Machine blinks at 0.52 blinks/second. (520ms)
 int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at double the frequency, in our case four times 
                               //the frequency is enough
-////WiFiServer server(80);
-WiFiServer server(301);
+WiFiServer server(80);
+//WiFiServer server(301);
  
 void setup() {
   Serial.begin(115200);       //Baud rate for serial port communication
