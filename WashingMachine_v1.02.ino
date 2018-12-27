@@ -19,6 +19,12 @@
 // *** 
 // *** https://github.com/celatzur/Washing-Machine
 // *** 
+// *** To run this board the first time, on the Arduino IDE: 
+// *** 1) File>Preferences>“Additional Boards Manager URLs:”>“http://arduino.esp8266.com/stable/package_esp8266com_index.json“
+// *** 2) Tools>Board>NodeMCU 1.0 (ESP-12E Module).
+// *** 3) Tools>Board>Board Manager... "esp8266 by ESP8266 Community">Install
+// *** 4) Tools>Board>NodeMCU 1.0 (ESP-12E Module). Upload Speed: "115200".
+// *** 
 // ************************************************************************************************************************
 /*
 // *** NodeMCU to Arduino GPIO pin correspondance mapping from pins_arduino.h
