@@ -46,7 +46,7 @@ static const uint8_t SD2 = 9;
 static const uint8_t D12 = 10;
 static const uint8_t SD3 = 10;
 */
-#include <ESP8266WiFi.h> //Dowwnlaodable from:
+#include <ESP8266WiFi.h> //Dowwnlaodable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
 #include <Servo.h>
 
 // Erase my pwd and SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
