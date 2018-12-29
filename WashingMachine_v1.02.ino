@@ -80,6 +80,8 @@ void setup() {
   Serial.begin(115200);       //Baud rate for serial port communication
   delay(10);
 
+  Serial.print("Setup...");
+
   //Output LED
   pinMode(LED_pin, OUTPUT);
   digitalWrite(LED_pin, LOW);
