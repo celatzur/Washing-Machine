@@ -49,7 +49,7 @@ static const uint8_t SD3 = 10;
 #include <ESP8266WiFi.h> //Dowwnlaodable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
 #include <Servo.h>
 
-// Erase my pwd and SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Erase pwd and SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  
 const char* ssid = "****";
 const char* password = "****";
