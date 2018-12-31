@@ -235,6 +235,14 @@ void httpServer(){
   client.println("<!DOCTYPE HTML>");
   client.println("<html>");
  
+  client.print("<head><title>");
+  client.print("Marc's Washing Machine");
+  client.print("</title>");
+  client.print("<style>body{background-color:black;text-align:center;color:white;}</style>");
+  client.print("</head>");
+  
+  
+  
   client.print("Led pin is now: ");
  
   if(value == HIGH) {
