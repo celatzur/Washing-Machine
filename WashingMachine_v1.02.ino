@@ -241,7 +241,8 @@ void httpServer(){
   client.print("<style>body{background-color:black;text-align:center;color:white;}</style>");
   client.print("</head>");
   
-  
+  client.println("<body><h1>Marc's Washing Machine <br>Web Server</h1>");
+  client.println("<button type="button">Start Washing</button>");
   
   client.print("Led pin is now: ");
  
