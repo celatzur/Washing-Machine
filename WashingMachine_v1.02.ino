@@ -244,7 +244,7 @@ void httpServer(){
   client.println("<body><h1>Marc's Washing Machine <br>Web Server</h1>");
   client.println("<a href=\"/START=OFF\"\"><button>Start Washing</button></a><br />");  
   
-  client.print("Led pin is now: ");
+  client.print("<br /> Whashing Machine is now: ");
  
   if(value == HIGH) {
     client.print("On");
