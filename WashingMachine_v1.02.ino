@@ -7,10 +7,19 @@
 // *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
 // *** In-Pin A0 (A0)       - Uses an LDR to check the blinking light of end of cicle
-// *** In-Pin GPIO000 (D3)  - Uses a mercury vibration switch to check the end of centrifugation
+// *** In-Pin GPIO000 (D2)  - Uses a mercury vibration switch to check the end of centrifugation
 // *** Out-Pin GPIO016 (D0) - LED to indicate change of state
 // *** Out-Pin Beeper?
-// *** Servomotor? 
+// *** Out-Pin Servomotor? 
+// *** 
+// *** D0 ---(Servomotor)
+// *** D2 ---(Vibration Sw)---|(gnd)
+// *** D3 ---(10kOhm)---------|(3V)
+// *** A0 ---(LDR)------------(3V)
+// ***   \---(10KOhm)---------|(gnd)
+// ***
+// *** My board of NodeMCU loses the programation after a Power cycle. This is fixed connecting GPIO0(D3-FLASH) 
+// *** with a 10kOhm resistor to 3V
 // ***
 // *** Created at 07 of June 2018
 // *** By Celatzur
