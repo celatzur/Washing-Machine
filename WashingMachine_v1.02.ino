@@ -19,7 +19,7 @@
 // ***   \---(10KOhm)---------|(gnd)
 // ***
 // *** My board of NodeMCU loses the programation after a Power cycle. This is fixed connecting GPIO0(D3-FLASH) 
-// *** with a 10kOhm resistor to 3V
+// *** with a 10kOhm resistor to 3V. As per https://github.com/esp8266/Arduino/blob/master/doc/boards.md#boot-messages-and-modes.
 // ***
 // *** Created at 07 of June 2018
 // *** By Celatzur
