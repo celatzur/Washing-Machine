@@ -111,9 +111,9 @@ void setup() {
 // ************************************************************************************************************************
 void loop() {
 
-  //httpServer(); //Creates and uses an http server to change the state of the led over a web page
+  httpServer(); //Creates and uses an http server to change the state of the led over a web page
   LDRSensor(); //Read the values of the LDR and sends them over serial port
-  vibrationSwitch(); // Reads the value of the mercury switch and lights the led
+  //vibrationSwitch(); // Reads the value of the mercury switch and lights the led
 }
 
 // ************************************************************************************************************************
