@@ -8,9 +8,8 @@
 // ***  
 // *** In-Pin A0 (A0)       - Uses an LDR to check the blinking light of end of cicle
 // *** In-Pin GPIO000 (D2)  - Uses a mercury vibration switch to check the end of centrifugation
-// *** Out-Pin GPIO016 (D0) - LED to indicate change of state
+// *** Out-Pin GPIO016 (D0) - Servomotor
 // *** Out-Pin Beeper?
-// *** Out-Pin Servomotor? 
 // *** 
 // *** D0 ---(Servomotor)
 // *** D2 ---(Vibration Sw)---|(gnd)
