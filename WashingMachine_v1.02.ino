@@ -34,26 +34,7 @@
 // *** 4) Tools>Board>NodeMCU 1.0 (ESP-12E Module). Upload Speed: "115200".
 // *** 
 // ************************************************************************************************************************
-/*
-// *** NodeMCU to Arduino GPIO pin correspondance mapping from pins_arduino.h
-static const uint8_t D0   = 16;
-static const uint8_t D1   = 5;  // I2C Bus SCL (clock)
-static const uint8_t D2   = 4;  // I2C Bus SDA (data)
-static const uint8_t D3   = 0;
-static const uint8_t D4   = 2;  // Same as "LED_BUILTIN", but inverted logic
-static const uint8_t D5   = 14; // SPI Bus SCK (clock)
-static const uint8_t D6   = 12; // SPI Bus MISO 
-static const uint8_t D7   = 13; // SPI Bus MOSI
-static const uint8_t D8   = 15; // SPI Bus SS (CS)
-static const uint8_t D9   = 3;  // RX0 (Serial console)
-static const uint8_t D10  = 1;  // TX0 (Serial console)
 
-static const uint8_t D11 = 9;
-static const uint8_t SD2 = 9;
-  
-static const uint8_t D12 = 10;
-static const uint8_t SD3 = 10;
-*/
 #include <ESP8266WiFi.h> //Dowwnlaodable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
 #include <Servo.h>
 
