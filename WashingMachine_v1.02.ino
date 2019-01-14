@@ -249,3 +249,7 @@ void httpServer(){
   Serial.println("Client disconnected");
   Serial.println("");
 }
+
+void handleRoot() {
+  server.send(200, "text/plain", "Hello from Washing Machine!");
+}
