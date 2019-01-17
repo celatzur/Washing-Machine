@@ -33,13 +33,12 @@
 // *** 3) Tools>Board>Board Manager... "esp8266 by ESP8266 Community">Install
 // *** 4) Tools>Board>NodeMCU 1.0 (ESP-12E Module). Upload Speed: "115200".
 // *** 
+// *** Erase pwd, SSID, mail x2
 // ************************************************************************************************************************
 
 #include <ESP8266WiFi.h> //Dowwnlaodable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
 #include <Servo.h>
 
-// Erase pwd and SSID before publishing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- 
 const char* ssid = "****";
 const char* password = "****";
 const char* host = "192.168.*.***"; //The serial port will tell you the IP once it starts up
