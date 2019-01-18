@@ -2,7 +2,9 @@
 // *** Washing machine sketch
 // ***
 // *** To detect the end of my old washing machine cycle, and then send an email and beeps. On the future may activate
-// *** the washing machine with a servomotor through internet. (Create WebServer, Send eMail SMTP, Sense Light, Activate Servomotor)
+// *** the washing machine with a servomotor through internet. (Create WebServer, Send eMail, Sense Light, Activate Servomotor)
+// ***
+// *** Send email: https://github.com/ramsesrr/Email-notifier-with-ESP8266-nodemcu-arduino-HC-SR04
 // ***
 // *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
@@ -33,37 +35,45 @@
 // *** 3) Tools>Board>Board Manager... "esp8266 by ESP8266 Community">Install
 // *** 4) Tools>Board>NodeMCU 1.0 (ESP-12E Module). Upload Speed: "115200".
 // *** 
-// *** Erase pwd, SSID, mail x2
 // ************************************************************************************************************************
 
-#include <ESP8266WiFi.h> //Dowwnlaodable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
+#include <ESP8266WiFi.h> //Downloadable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
 #include <Servo.h>
+#include <rBase64.h>
 
-const char* ssid = "****";
-const char* password = "****";
-const char* host = "192.168.*.***"; //The serial port will tell you the IP once it starts up
-                                    //just write it here afterwards and upload
+// Email and Http server definitions
+const char* ssid = "your-sidd";             // WIFI network name
+const char* password = "your-password";     // WIFI network password
+const char* user_base64 = "yourEmail@gmail.com";
+const char* user_password_base64 = "yourEmail_password";
+const char* from_email = "MAIL From:<FromEmail@gmail.com>";
+const char* to_email = "RCPT To:<yourEmail@gmail.com>"; 
+const char* SMTP_server = "smtp.mail.gmail.com";                              // SMTP server address
+char* mail_subject = "Subject: Your washing machine has just finished\r\n";   // email subject
+const int SMTP_port = 465;
+uint8_t connection_state = 0;           // Connected to WIFI or not
+uint16_t reconnect_interval = 10000;    // If not connected wait time to try again
+WiFiServer server(80);
+//WiFiServer server(301);
+const char* host = "192.168.*.***";     // The serial port will tell you the IP once it starts up
+                                        // just write it here afterwards and upload
  
-int LED_pin = 16;             // GPIO16 = D0 Correspondance between arduino and LoLin pins
-
+// Sensors definitions
 int switch_pin = 0;           // GPIO00 = D3 Definition of mercury tilt switch sensor interface
 int switch_val;               // Defines a numeric variable for the switch
-
 const int LDR = A0;           // Defining LDR PIN 
 int LDR_val = 0;              // Varible to store LDR values
 int LDR_threshold_val = 500;  // Threshold for the LDR, 700 for light, 300 for darkness
-
+int LED_pin = 16;             // GPIO16 = D0 Correspondance between arduino and LoLin pins
+//My Washing Machine blinks at 0.52 blinks/second. (520ms)
+int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at double the frequency, in our case four times 
+                              //the frequency is enough
+// Servomotor definitions
 int servoStart_pin = 1;        // Servomotor to start the washing-machine
 Servo servoStart;
 int ServoOffPosition = 90;
 int ServoOnPosition = 180;
 
-//My Washing Machine blinks at 0.52 blinks/second. (520ms)
-int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at double the frequency, in our case four times 
-                              //the frequency is enough
-WiFiServer server(80);
-//WiFiServer server(301);
- 
 void setup() {
   Serial.begin(115200);       //Baud rate for serial port communication
   delay(10);
