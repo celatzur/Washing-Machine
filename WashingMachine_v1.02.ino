@@ -2,7 +2,7 @@
 // *** Washing machine sketch
 // ***
 // *** To detect the end of my old washing machine cycle, and then send an email and beeps. On the future may activate
-// *** the washing machine with a servomotor through internet. (Create WebServer, Send eMail, Sense Light, Activate Servomotor)
+// *** the washing machine with a servomotor through internet. (Create WebServer, Send eMail SMTP, Sense Light, Activate Servomotor)
 // ***
 // *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
