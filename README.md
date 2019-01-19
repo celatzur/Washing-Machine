@@ -8,4 +8,6 @@ Communication, sensors and actuators for my old washing machine with NodeMCU and
 <img src="https://github.com/celatzur/Washing-Machine/blob/master/images/WashingMachine_HandSketchxC.jpeg" width="400" height="130" />
 </p>
 
-The code will create a server where I can remotely see the status of the machine and push the start button.
+To detect the end of my old washing machine cycle, and then send an email and beeps. Activate the washing machine with a servomotor through internet. (Create WebServer, Sense Light, Send eMail, Activate Servomotor).
+
+TTD: Check the LDR once every 5 minutes, and sleep after sending the mail to save battery. Send mail if battery is low
