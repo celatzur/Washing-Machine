@@ -5,7 +5,8 @@
 // *** the washing machine with a servomotor through internet. (Create WebServer, Send eMail, Sense Light, Activate Servomotor)
 // ***
 // *** TTD: Check the LDR once every 5 minutes, and sleep after sending the mail to save battery. Send mail if battery is low
-// *** 
+// *** Calculate the energy cost of sleeping and awakening inbetween sensor readings
+// ***
 // *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
 // *** In-Pin A0 (A0)       - Uses an LDR to check the blinking light of end of cicle
@@ -20,7 +21,7 @@
 // ***   \---(10KOhm)---------|(gnd)
 // ***
 // *** My board of NodeMCU loses the programation after a Power cycle. This is fixed connecting GPIO0(D3-FLASH) 
-// *** with a 10kOhm resistor to 3V. As per https://github.com/esp8266/Arduino/blob/master/doc/boards.md#boot-messages-and-modes.
+// *** with 10kOhm resistor to 3V. As per https://github.com/esp8266/Arduino/blob/master/doc/boards.md#boot-messages-and-modes.
 // ***
 // *** Created at 07 of June 2018
 // *** By Celatzur
@@ -169,7 +170,8 @@ int LDRSensor(){
 
 // Method 1: If we know the original frequency, apply Nyquist sampling theorem
 // The Washing Machine blinks at 0.52 blinks/second. (520ms)
-int sample_freq_ms = 150; //By Nyquist Teorem we should sample at double frequency, in our case four times thre frequency is enough
+//By Nyquist Teorem we should sample at double frequency, in our case four times thre frequency is enough
+int sample_freq_ms = 150; 
 
 // Method 2: Sample at random intervals, hoping to catch different levels
   //Now the Light is ON, check if the light is OFF five times in case we check when it's blinking
