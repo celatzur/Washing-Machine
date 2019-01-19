@@ -4,8 +4,8 @@
 // *** To detect the end of my old washing machine cycle, and then send an email and beeps. On the future may activate
 // *** the washing machine with a servomotor through internet. (Create WebServer, Send eMail, Sense Light, Activate Servomotor)
 // ***
-// *** Send email: https://github.com/ramsesrr/Email-notifier-with-ESP8266-nodemcu-arduino-HC-SR04
-// ***
+// *** TTD: Check the LDR once every 5 minutes, and sleep after sending the mail to save battery. Send mail if battery is low
+// *** 
 // *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
 // *** In-Pin A0 (A0)       - Uses an LDR to check the blinking light of end of cicle
@@ -14,9 +14,9 @@
 // *** Out-Pin Beeper?
 // *** 
 // *** D0 ---(Servomotor)
-// *** D2 ---(Vibration Sw)---|(gnd)
+// *** D2 ---(Vibration sw)---|(gnd)
 // *** D3 ---(10kOhm)---------|(3V)
-// *** A0 ---(LDR)------------(3V)
+// *** A0 ---(LDR)------------|(3V)
 // ***   \---(10KOhm)---------|(gnd)
 // ***
 // *** My board of NodeMCU loses the programation after a Power cycle. This is fixed connecting GPIO0(D3-FLASH) 
