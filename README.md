@@ -10,4 +10,8 @@ Communication, sensors and actuators for my old washing machine with NodeMCU and
 
 To detect the end of my old washing machine cycle, and then send an email and beeps. Activate the washing machine with a servomotor through internet. (Create WebServer, Sense Light, Send eMail, Activate Servomotor).
 
-TTD: Check the LDR once every 5 minutes, and sleep after sending the mail to save battery. Send mail if battery is low
+<p align="center">
+<img src="https://github.com/celatzur/Washing-Machine/blob/master/images/Screenshot_01.png" width="290" height="177" />
+</p>
+
+TTD: Check the LDR once every 5 minutes, and sleep after sending the mail to save battery, or between readings. Send mail if battery is low
