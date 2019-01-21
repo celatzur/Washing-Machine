@@ -42,23 +42,22 @@
 #include <Servo.h>
 #include <rBase64.h>
 
-// Email and Http server definitions
+// **** Email and Http server definitions
 const char* ssid = "your-sidd";             // WIFI network name
 const char* password = "your-password";     // WIFI network password
 const char* user_base64 = "yourEmail@gmail.com";
 const char* user_password_base64 = "yourEmail_password";
 const char* from_email = "MAIL From:<FromEmail@gmail.com>";
 const char* to_email = "RCPT To:<yourEmail@gmail.com>"; 
-const char* SMTP_server = "smtp.mail.gmail.com";                              // SMTP server address
-char* mail_subject = "Subject: Your washing machine has just finished\r\n";   // email subject
-const int SMTP_port = 465;
-uint8_t connection_state = 0;           // Connected to WIFI or not
-uint16_t reconnect_interval = 10000;    // If not connected wait time to try again
-WiFiServer server(80);
-//WiFiServer server(301);
-const char* host = "192.168.*.***";     // The serial port will tell you the IP once it starts up
-                                        // just write it here afterwards and upload
- 
+const char* SMTP_server = "smtp.mail.gmail.com";                              // SMTP server address smtp.gmail.com
+char* mail_subject = "Subject: The washing machine has just finished\r\n";    // email subject
+const int SMTP_port = 465;                  // 587
+uint8_t connection_state = 0;               // Connected to WIFI or not
+uint16_t reconnect_interval = 10000;        // If not connected wait time to try again
+WiFiServer server(80);                      //WiFiServer server(301);
+char message_content[50];                   // Content of the body of the mail
+const char* host = "192.168.*.***";         // The serial port will tell you the IP once it starts up
+                                            // just write it here afterwards and upload
 // Sensors definitions
 int switch_pin = 0;           // GPIO00 = D3 Definition of mercury tilt switch sensor interface
 int switch_val;               // Defines a numeric variable for the switch
