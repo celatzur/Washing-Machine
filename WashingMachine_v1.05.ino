@@ -21,7 +21,7 @@
 // ***   \---(10KOhm)---------|(gnd)
 // ***
 // *** My board of NodeMCU loses the programation after a Power cycle. This is fixed connecting GPIO0(D3-FLASH) 
-// *** with 10kOhm resistor to 3V. As per https://github.com/esp8266/Arduino/blob/master/doc/boards.md#boot-messages-and-modes.
+// *** with a 10kOhm resistor to 3V. As per https://github.com/esp8266/Arduino/blob/master/doc/boards.md#boot-messages-and-modes.
 // ***
 // *** Created at 07 of June 2018
 // *** By Celatzur
@@ -39,8 +39,8 @@
 // ************************************************************************************************************************
 
 #include <ESP8266WiFi.h> //Downloadable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
+#include <rBase64.h>  //rBase64 by Abhijit Bose. Helps to Encode and Decode in BASE64 form using simple String operations.
 #include <Servo.h>
-#include <rBase64.h>
 
 // **** Email and Http server definitions
 const char* ssid = "your-sidd";             // WIFI network name
@@ -58,22 +58,25 @@ WiFiServer server(80);                      //WiFiServer server(301);
 char message_content[50];                   // Content of the body of the mail
 const char* host = "192.168.*.***";         // The serial port will tell you the IP once it starts up
                                             // just write it here afterwards and upload
-// Sensors definitions
+// **** Sensors definitions
 int switch_pin = 0;           // GPIO00 = D3 Definition of mercury tilt switch sensor interface
 int switch_val;               // Defines a numeric variable for the switch
 const int LDR = A0;           // Defining LDR PIN 
 int LDR_val = 0;              // Varible to store LDR values
 int LDR_threshold_val = 500;  // Threshold for the LDR, 700 for light, 300 for darkness
-int LED_pin = 16;             // GPIO16 = D0 Correspondance between arduino and LoLin pins
-//My Washing Machine blinks at 0.52 blinks/second. (520ms)
-int sample_freq_ms = 150;     //By Nyquist Teorem we should sample at least at double the frequency, in our case four times 
-                              //the frequency is enough
-// Servomotor definitions
+                              //int LED_pin = 16;             // GPIO16 = D0 Correspondance between arduino and LoLin pins
+int LED_pin = 2;              //#define D4 2 // Same as "LED_BUILTIN", but inverted logic
+int sample_freq_ms = 175;     // My WM blinks at 0.52 blinks/s (520ms->1.92KHz). We sample at three time this frequency
+                              
+// **** Servomotor definitions
 int servoStart_pin = 1;        // Servomotor to start the washing-machine
 Servo servoStart;
 int ServoOffPosition = 90;
 int ServoOnPosition = 180;
 
+// ************************************************************************************************************************
+// *** Setup
+// ************************************************************************************************************************
 void setup() {
   Serial.begin(115200);       //Baud rate for serial port communication
   delay(10);
