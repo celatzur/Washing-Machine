@@ -88,9 +88,6 @@ void setup() {
   pinMode(LED_pin, OUTPUT);
   digitalWrite(LED_pin, LOW);
 
-  //LDR sensor as input
-  pinMode(LDR_pin, INPUT);
-  
   //Mercury switch as input
   pinMode(switch_pin, INPUT);
  
