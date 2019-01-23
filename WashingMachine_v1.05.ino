@@ -78,6 +78,7 @@ int ServoOnPosition = 180;
 // *** Setup
 // ************************************************************************************************************************
 void setup() {
+  
   Serial.begin(115200);       //Baud rate for serial port communication
   delay(10);
 
@@ -87,15 +88,26 @@ void setup() {
   pinMode(LED_pin, OUTPUT);
   digitalWrite(LED_pin, LOW);
 
+  //LDR sensor as input
+  pinMode(LDR_pin, INPUT);
+  
   //Mercury switch as input
   pinMode(switch_pin, INPUT);
  
-  // Servomotor to start the washing-machine
+  //Servomotor to start the washing-machine
   servoStart.attach(servoStart_pin);
   servoStart.write(ServoOffPosition);
   
   //Connect to Wifi network, starts the server and prints the IP address
   setupWifi();
+
+  //Send a mail informing of the reboot
+  if (sendEmail("Board Reboot"))  {
+    Serial.println(F("Email sent"));
+  }
+  else  {
+    Serial.println(F("Email failed"));
+  }
 }
 
 // ************************************************************************************************************************
