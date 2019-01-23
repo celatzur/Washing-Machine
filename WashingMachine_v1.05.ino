@@ -54,14 +54,14 @@ char* mail_subject = "Subject: The washing machine has just finished\r\n";    //
 const int SMTP_port = 465;                  // 587
 uint8_t connection_state = 0;               // Connected to WIFI or not
 uint16_t reconnect_interval = 10000;        // If not connected wait time to try again
-WiFiServer server(80);                      //WiFiServer server(301);
+WiFiServer server(80);                      // WiFiServer server(301);
 char message_content[50];                   // Content of the body of the mail
 const char* host = "192.168.*.***";         // The serial port will tell you the IP once it starts up
                                             // just write it here afterwards and upload
 // **** Sensors definitions
 int switch_pin = 0;           // GPIO00 = D3 Definition of mercury tilt switch sensor interface
 int switch_val;               // Defines a numeric variable for the switch
-const int LDR = A0;           // Defining LDR PIN 
+const int LDR_pin = A0;       // Defining LDR PIN 
 int LDR_val = 0;              // Varible to store LDR values
 int LDR_threshold_val = 500;  // Threshold for the LDR, 700 for light, 300 for darkness
                               //int LED_pin = 16;             // GPIO16 = D0 Correspondance between arduino and LoLin pins
