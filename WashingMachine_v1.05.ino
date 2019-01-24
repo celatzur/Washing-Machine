@@ -5,7 +5,7 @@
 // *** the washing machine with a servomotor through internet. (Create WebServer, Send eMail, Sense Light, Activate Servomotor)
 // ***
 // *** TTD: Check the LDR once every 5 minutes, and sleep after sending the mail to save battery. Send mail if battery is low
-// *** Calculate the energy cost of sleeping and awakening inbetween sensor readings
+// *** Calculate the energy cost of sleeping and awakening inbetween sensor readings. Reinicialize variables after sending mail
 // ***
 // *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
@@ -88,6 +88,9 @@ void setup() {
   pinMode(LED_pin, OUTPUT);
   digitalWrite(LED_pin, LOW);
 
+  //LDR sensor as input
+  //pinMode(LDR_pin, INPUT);
+  
   //Mercury switch as input
   pinMode(switch_pin, INPUT);
  
@@ -111,10 +114,28 @@ void setup() {
 // *** Main loop: waits to the LED to be blinkning, checks the vibration and send a beep and a mail
 // ************************************************************************************************************************
 void loop() {
+  const unsigned long sampleTime = 5 * 60 * 1000UL;       // Once every 5 min (5 * 60 * 1000UL)
+  static unsigned long lastSampleTime = 0 - sampleTime;   // Initialize for sampling first time through loop()
 
-  httpServer(); //Creates and uses an http server to change the state of the led over a web page
-  LDRSensor(); //Read the values of the LDR and sends them over serial port
-  //vibrationSwitch(); // Reads the value of the mercury switch and lights the led
+  unsigned long nowTime = millis();
+
+  httpServer();             //Creates and uses an http server to change the state of the led over a web page
+
+  // Check the LDR once every 5 minutes, and sleep in between and afterwards
+  if (nowTime - lastSampleTime >= sampleTime) {
+    lastSampleTime += sampleTime;
+    LDRSensor();            //Read the values of the LDR and sends them over serial port
+    //vibrationSwitch();    // Reads the value of the mercury switch and lights the led 
+  }
+
+  if (hasFinished()){ 
+    if (sendEmail(message_content)){
+      Serial.println(F("Email sent"));
+      }
+    else {
+      Serial.println(F("Email sent"));
+    }
+  }
 }
 
 // ************************************************************************************************************************
