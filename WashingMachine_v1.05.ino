@@ -124,7 +124,9 @@ void loop() {
   // Check the LDR once every 5 minutes, and sleep in between and afterwards
   if (nowTime - lastSampleTime >= sampleTime) {
     lastSampleTime += sampleTime;
-    LDRSensor();            //Read the values of the LDR and sends them over serial port
+    if (LDRSensor()) {            // Read the values of the LDR and sends them over serial port
+      // We had finished
+    }
     //vibrationSwitch();    // Reads the value of the mercury switch and lights the led 
   }
 
