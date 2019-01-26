@@ -190,36 +190,6 @@ void vibrationSwitch(){
 // *** Read the values of the LDR and sends them over serial port
 // ************************************************************************************************************************
 uint8_t LDRSensor(){
-   //LDR constantly High for near end of the process. Blinking only when really finished
-   // May be useful to use interruptions with the ADC
-/*  
-   LDR_val = analogRead(LDR_pin);      // Reading Input
-
-  // If the Light is OFF, whait one minute and check again  
-   while (LDR_val > LDR_threshold_val ) {
-    for (int i=0; i<60; i++){
-      delay(1000);
-      }
-      LDR_val = analogRead(LDR_pin);      // Reading Input
-    }
-*/
-// Method 1: If we know the original frequency, apply Nyquist sampling theorem
-// The Washing Machine blinks at 0.52 blinks/second. (520ms->1.92KHz)
-//int sample_freq_ms = 150; //By Nyquist Teorem we should sample at double frequency, in our case four times thre frequency is enough
-//int sample_freq_ms = 175;     // My WM blinks at 0.52 blinks/s (520ms). We sample at a third of this frequency
-
-// Method 2: Sample at random intervals, hoping to catch different levels
-  //Now the Light is ON, check if the light is OFF five times in case we check when it's blinking
-/*  for (int i=0; i<5; i++){
-    if (LDR_val < LDR_threshold_val) {
-      return(1);//Returns High, meaning, the LED is blinking
-    }
-    int time=random(500)*i; //Randomize the lectures
-    delay(time);
-    LDR_val = analogRead(LDR_pin);      // Reading Input
-  }
-*/   
-
 // Method 3: Once every 5 minutes we sample, during 5 seconds, about three samples per second, if we get at least 4 rising levels (the 
 // led is off and turnes on) that means it has finished.
 
@@ -228,12 +198,8 @@ uint8_t LDRSensor(){
   for (int i=0; i<=15; i++) {
     if (LDR_val < LDR_threshold_val) {
       finishingLED=OFF;
-      
     }
   }
-  
-  
-
   
   //Serial.print("LDR value is : " );                        
   //Serial.println(LDR_val);        // Writing input on serial monitor.
