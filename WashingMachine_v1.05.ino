@@ -124,19 +124,15 @@ void loop() {
   // Check the LDR once every 5 minutes, and sleep in between and afterwards
   if (nowTime - lastSampleTime >= sampleTime) {
     lastSampleTime += sampleTime;
-    if (LDRSensor()) {            // Read the values of the LDR and sends them over serial port
-      // We had finished
+    if (LDRSensor()) {                                  // Read the values of the LDR
+      if (sendEmail(message_content)){                  // We had finished. Send an Email
+        Serial.println(F("Email sent"));
+        }
+      else {
+        Serial.println(F("Email sent"));
+      }
     }
     //vibrationSwitch();    // Reads the value of the mercury switch and lights the led 
-  }
-
-  if (hasFinished()){ 
-    if (sendEmail(message_content)){
-      Serial.println(F("Email sent"));
-      }
-    else {
-      Serial.println(F("Email sent"));
-    }
   }
 }
 
