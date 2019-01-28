@@ -124,8 +124,8 @@ void loop() {
   // Check the LDR once every 5 minutes, and sleep in between and afterwards
   if (nowTime - lastSampleTime >= sampleTime) {
     lastSampleTime += sampleTime;
-    if (LDRSensor()) {                                  // Read the values of the LDR
-      if (sendEmail(message_content)){                  // We had finished. Send an Email
+    if (LDRSensor()) {                                        // Read the values of the LDR
+      if (sendEmail("The Washing Machine has just finished.")){ // We had finished. Send an Email
         Serial.println(F("Email sent"));
         }
       else {
