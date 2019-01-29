@@ -114,6 +114,7 @@ void setup() {
 // *** Main loop: waits to the LED to be blinkning, checks the vibration and send a beep and a mail
 // ************************************************************************************************************************
 void loop() {
+  
   const unsigned long sampleTime = 5 * 60 * 1000UL;       // Once every 5 min (5 * 60 * 1000UL)
   static unsigned long lastSampleTime = 0 - sampleTime;   // Initialize for sampling first time through loop()
 
