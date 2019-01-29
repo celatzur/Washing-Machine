@@ -114,6 +114,7 @@ void setup() {
 // *** Main loop: waits to the LED to be blinkning, checks the vibration and send a beep and a mail
 // ************************************************************************************************************************
 void loop() {
+  
   const unsigned long sampleTime = 5 * 60 * 1000UL;       // Once every 5 min (5 * 60 * 1000UL)
   static unsigned long lastSampleTime = 0 - sampleTime;   // Initialize for sampling first time through loop()
 
@@ -124,8 +125,8 @@ void loop() {
   // Check the LDR once every 5 minutes, and sleep in between and afterwards
   if (nowTime - lastSampleTime >= sampleTime) {
     lastSampleTime += sampleTime;
-    if (LDRSensor()) {                                  // Read the values of the LDR
-      if (sendEmail(message_content)){                  // We had finished. Send an Email
+    if (LDRSensor()) {                                        // Read the values of the LDR
+      if (sendEmail("The Washing Machine has just finished.")){ // We had finished. Send an Email
         Serial.println(F("Email sent"));
         }
       else {
