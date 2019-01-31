@@ -41,6 +41,7 @@
 #include <ESP8266WiFi.h> //Downloadable from: http://arduino.esp8266.com/stable/package_esp8266com_index.json
 #include <rBase64.h>  //rBase64 by Abhijit Bose. Helps to Encode and Decode in BASE64 form using simple String operations.
 #include <Servo.h>
+#include <arduino_secrets.h>  // To hide personal data before sharing the code
 
 // **** Email and Http server definitions
 const char* ssid = "your-sidd";             // WIFI network name
