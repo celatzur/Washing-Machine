@@ -44,20 +44,20 @@
 #include <arduino_secrets.h>  // To hide personal data before sharing the code
 
 // **** Email and Http server definitions
-const char* ssid = "your-sidd";             // WIFI network name
-const char* password = "your-password";     // WIFI network password
-const char* user_base64 = "yourEmail@gmail.com";
-const char* user_password_base64 = "yourEmail_password";
-const char* from_email = "MAIL From:<FromEmail@gmail.com>";
-const char* to_email = "RCPT To:<yourEmail@gmail.com>"; 
-const char* SMTP_server = "smtp.mail.gmail.com";                              // SMTP server address smtp.gmail.com
+const char* ssid = SECRET_SSID;             // WIFI network name
+const char* password = SECRET_PASS;         // WIFI network password
+const char* user_mail_base64 = SECRET_USER_MAIL;
+const char* user_mail_pass_base64 = SECRET_USER_MAIL_PASS;
+const char* from_email = SECRET_FROM_MAIL;
+const char* to_email = SECRET_TO_MAIL; 
+const char* SMTP_server = SECRET_SMTP_SERVER;                                 // SMTP server address smtp.gmail.com
 char* mail_subject = "Subject: The washing machine has just finished\r\n";    // email subject
 const int SMTP_port = 465;                  // 587
 uint8_t connection_state = 0;               // Connected to WIFI or not
 uint16_t reconnect_interval = 10000;        // If not connected wait time to try again
 WiFiServer server(80);                      // WiFiServer server(301);
 char message_content[50];                   // Content of the body of the mail
-const char* host = "192.168.*.***";         // The serial port will tell you the IP once it starts up
+const char* host = SECRET_HOST_IP;          // The serial port will tell you the IP once it starts up
                                             // just write it here afterwards and upload
 // **** Sensors definitions
 int switch_pin = 0;           // GPIO00 = D3 Definition of mercury tilt switch sensor interface
