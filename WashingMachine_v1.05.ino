@@ -194,13 +194,28 @@ uint8_t LDRSensor(){
   uint8_t finishingLEDBefore=0;
   uint8_t risingFlanks=0;
   
-  LDR_val = analogRead(LDR_pin);      // Reading Input
+  LDR_val = analogRead(LDR_pin);          // Reading Input
 
-  for (int i=0; i<=15; i++) {
-    if (LDR_val < LDR_threshold_val) {
-      finishingLED=OFF;
+  for (int i=0; i<=15; i++) {             // Sample 3x Second x5 Seconds
+    finishingLEDBefore=finishingLED;
+
+    if (LDR_val < LDR_threshold_val) {    // The LED is OFF
+      finishingLED=0;
     }
+    else {
+      finishingLED=1;                     // The LED is ON
+      }
+    if (finishingLEDBefore<finishingLED){ // If we go from LED OFF to ON, it's a rising flank
+      risingFlanks++;
+      }
   }
+
+  if (risingFlanks >= 4) {
+    return(1);
+    }
+    else {
+      return(0);
+      }
   
   //Serial.print("LDR value is : " );                        
   //Serial.println(LDR_val);        // Writing input on serial monitor.
