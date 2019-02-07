@@ -220,7 +220,7 @@ uint8_t LDRSensor(){
   //Serial.print("LDR value is : " );                        
   //Serial.println(LDR_val);        // Writing input on serial monitor.
   //delay(1000); 
-  return(1);
+  //return(1);
 }
 
 // ************************************************************************************************************************
