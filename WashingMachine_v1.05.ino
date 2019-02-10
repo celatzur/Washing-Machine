@@ -97,8 +97,8 @@ void setup() {
   pinMode(switch_pin, INPUT);
  
   //Servomotor to start the washing-machine
-  servoStart.attach(servoStart_pin);
-  servoStart.write(ServoOffPosition);
+  //servoStart.attach(servoStart_pin);
+  //servoStart.write(ServoOffPosition);
   
   //Connect to Wifi network, starts the server and prints the IP address
   setupWifi();
