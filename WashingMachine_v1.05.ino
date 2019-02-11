@@ -129,10 +129,10 @@ void loop() {
     lastSampleTime += sampleTime;
     if (LDRSensor()) {                                          // Read the values of the LDR. True if finished
       if (sendEmail("The Washing Machine has just finished.")){ // We had finished. Send an Email
-        Serial.println(F("Email sent"));
+        Serial.println(F("Just finished. Email sent"));
         }
       else {
-        Serial.println(F("Email NOT sent"));
+        Serial.println(F("Just finished. Email NOT sent"));
       }
     }
     //vibrationSwitch();    // Reads the value of the mercury switch and lights the led 
