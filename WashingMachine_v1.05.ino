@@ -147,7 +147,7 @@ void setupWifi() {
   // Connect to WiFi network
   Serial.println();
   Serial.println();
-  Serial.print("Connecting to ");
+  Serial.print("Connecting as wifi client to SSID: ");
   Serial.println(ssid);
  
   WiFi.begin(ssid, password);
