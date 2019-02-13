@@ -151,7 +151,10 @@ void setupWifi() {
   Serial.println(ssid);
  
   WiFi.begin(ssid, password);
- 
+  
+  // Give 10 seconds to connect to station
+  unsigned long startTime = millis();
+  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
