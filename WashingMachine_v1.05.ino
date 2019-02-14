@@ -155,7 +155,7 @@ void setupWifi() {
   // Give 10 seconds to connect to station
   unsigned long startTime = millis();
   
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED && millis() - startTime < reconnect_interval) {
     delay(500);
     Serial.print(".");
   }
