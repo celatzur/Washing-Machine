@@ -160,6 +160,7 @@ void setupWifi() {
     Serial.print(".");
   }
   Serial.println("");
+  // Check connection
   Serial.println("WiFi connected");
  
   // Start the server
