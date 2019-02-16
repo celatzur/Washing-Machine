@@ -161,6 +161,8 @@ void setupWifi() {
   }
   Serial.println("");
   // Check connection
+  if (WiFi.status() == WL_CONNECTED) {
+
   Serial.println("WiFi connected");
  
   // Start the server
