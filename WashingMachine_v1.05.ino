@@ -162,18 +162,21 @@ void setupWifi() {
   Serial.println("");
   // Check connection
   if (WiFi.status() == WL_CONNECTED) {
-
-  Serial.println("WiFi connected");
+    Serial.println("WiFi connected");
  
-  // Start the server
-  server.begin();
-  Serial.println("Server started");
+    // Start the server
+    server.begin();
+    Serial.println("Server started");
  
-  // Print the IP address on the serial port
-  Serial.print("Use this URL to connect: ");
-  Serial.print("http://");
-  Serial.print(WiFi.localIP());
-  Serial.println("/");
+    // Print the IP address on the serial port
+    Serial.print("Use this URL to connect: ");
+    Serial.print("http://");
+    Serial.print(WiFi.localIP());
+    Serial.println("/");
+  }
+  else {
+  
+  }
   }
 
 // ************************************************************************************************************************
