@@ -158,7 +158,7 @@ void setupWifi() {
   while (WiFi.status() != WL_CONNECTED && millis() - startTime < reconnect_interval) {
     delay(500);
     Serial.print(".");
-  }
+    }
   Serial.println("");
   // Check connection
   if (WiFi.status() == WL_CONNECTED) {
@@ -173,10 +173,11 @@ void setupWifi() {
     Serial.print("http://");
     Serial.print(WiFi.localIP());
     Serial.println("/");
-  }
+    }
   else {
-  
-  }
+    Serial.print("WiFi connect failed to ssid: ");
+
+    }
   }
 
 // ************************************************************************************************************************
