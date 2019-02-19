@@ -176,7 +176,7 @@ void setupWifi() {
     }
   else {
     Serial.print("WiFi connect failed to ssid: ");
-
+    Serial.println(ssid);
     }
   }
 
