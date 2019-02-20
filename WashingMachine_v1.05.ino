@@ -184,7 +184,7 @@ void setupWifi() {
 // *** Reads the value of the mercury switch and lights the led
 // ************************************************************************************************************************
 void vibrationSwitch(){
-
+  // To Check: Perhaps the buildin LED uses inverted logic
   switch_val = digitalRead(switch_pin); // check mercury switch state
   if(switch_val == HIGH) {
     digitalWrite(LED_pin, HIGH);
