@@ -306,6 +306,13 @@ void httpServer(){
   Serial.println("");
 }
 
+// ************************************************************************************************************************
+// *** Sends an eMail
+// ************************************************************************************************************************
+uint8_t sendEmail(const char *message)
+{
+}
+
 /* Next functions are from the basic ESP8266 HelloServer example*/
 
 void handleRoot() {
