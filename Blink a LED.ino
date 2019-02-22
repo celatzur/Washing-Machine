@@ -11,14 +11,10 @@
 // ***
 // *** I will use the ESP8266 (with the Lolin NodeMCU V3)
 // ***  
-// *** In-Pin A0 (A0)       - Uses an LDR to check the blinking light of end of cicle
-// *** In-Pin GPIO000 (D2)  - Uses a mercury vibration switch to check the end of centrifugation
-// *** Out-Pin GPIO016 (D0) - Servomotor
-// *** Out-Pin Beeper?
-// *** 
 // *** D0 ---(Servomotor)
 // *** D2 ---(Vibration sw)---|(gnd)
 // *** D3 ---(10kOhm)---------|(3V)
+// *** D4 ---(LED)------------|(gnd)
 // *** A0 ---(LDR)------------|(3V)
 // ***   \---(10KOhm)---------|(gnd)
 // ***
