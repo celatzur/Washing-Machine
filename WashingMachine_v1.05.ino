@@ -311,6 +311,16 @@ void httpServer(){
 // ************************************************************************************************************************
 uint8_t sendEmail(const char *message)
 {
+  WiFiClientSecure client;
+
+  if (client.connect(SMTP_server, SMTP_port) == 1)  {
+    Serial.println(F("Connected to SMTP server"));
+  }
+  else  {
+    Serial.println(F("Connection to SMTP failed"));
+    return 0;
+  }
+  
 }
 
 /* Next functions are from the basic ESP8266 HelloServer example*/
