@@ -320,7 +320,23 @@ uint8_t sendEmail(const char *message)
     Serial.println(F("Connection to SMTP failed"));
     return 0;
   }
-  
+    if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending EHLO")); client.println("EHLO 1.2.3.4"); if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending login")); client.println("AUTH LOGIN"); if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending User base64")); client.println(rbase64.encode(user_mail_base64)); if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending Password base64")); client.println(rbase64.encode(user_mail_pass_base64)); if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending From")); client.println(from_email); if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending To")); client.println(to_email); if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending DATA")); client.println(F("DATA")); if (!eRcv(client)) return 0;
+  //client.println(F("Subject: Esp8266 email test\r\n"));
+  client.println((mail_subject));
+  client.println(message);
+  client.println(F("."));
+  if (!eRcv(client)) return 0;
+  Serial.println(F("--- Sending QUIT")); client.println(F("QUIT")); if (!eRcv(client)) return 0;
+  client.stop();
+  Serial.println(F("Disconnected from SMTP server"));
+  return 1;
 }
 
 /* Next functions are from the basic ESP8266 HelloServer example*/
