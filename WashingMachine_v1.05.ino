@@ -339,6 +339,13 @@ uint8_t sendEmail(const char *message)
   return 1;
 }
 
+// ************************************************************************************************************************
+// *** Receive
+// ************************************************************************************************************************
+uint8_t eRcv(WiFiClientSecure client)
+{
+}
+
 /* Next functions are from the basic ESP8266 HelloServer example*/
 
 void handleRoot() {
