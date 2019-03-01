@@ -344,6 +344,9 @@ uint8_t sendEmail(const char *message)
 // ************************************************************************************************************************
 uint8_t eRcv(WiFiClientSecure client)
 {
+  uint8_t respCode;
+  uint8_t thisByte;
+  uint16_t loopCount = 0;
 }
 
 /* Next functions are from the basic ESP8266 HelloServer example*/
