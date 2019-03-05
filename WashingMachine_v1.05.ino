@@ -349,6 +349,13 @@ uint8_t eRcv(WiFiClientSecure client)
   uint16_t loopCount = 0;
   while (!client.available()) {
     delay(1);
+    loopCount++;
+
+    if (loopCount > reconnect_interval) {
+      client.stop();
+      Serial.println(F("\r\nTimeout"));
+      return 0;
+    }
   }
 }
 
