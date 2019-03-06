@@ -350,7 +350,7 @@ uint8_t eRcv(WiFiClientSecure client)
   while (!client.available()) {
     delay(1);
     loopCount++;
-
+    // If nothing is received for 10 seconds, timeout
     if (loopCount > reconnect_interval) {
       client.stop();
       Serial.println(F("\r\nTimeout"));
