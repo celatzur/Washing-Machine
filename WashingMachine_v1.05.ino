@@ -358,7 +358,10 @@ uint8_t eRcv(WiFiClientSecure client)
     }
   }
     respCode = client.peek();
+  while (client.available()) {
 
+    
+  }
 }
 
 /* Next functions are from the basic ESP8266 HelloServer example*/
