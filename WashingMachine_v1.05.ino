@@ -357,7 +357,7 @@ uint8_t eRcv(WiFiClientSecure client)
       return 0;
     }
   }
-    respCode = client.peek();
+  respCode = client.peek();
   while (client.available()) {
     thisByte = client.read();
     Serial.write(thisByte);    
