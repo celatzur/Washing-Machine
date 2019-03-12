@@ -362,6 +362,8 @@ uint8_t eRcv(WiFiClientSecure client)
     thisByte = client.read();
     Serial.write(thisByte);    
   }
+    if (respCode >= '4') {
+
 }
 
 /* Next functions are from the basic ESP8266 HelloServer example*/
